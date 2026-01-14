@@ -1,82 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Business P&L Analysis | Power BI Project</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<!-- ================= HEADER ================= -->
-<header class="header">
-  <div class="header-content">
-    <h1>Business P&L Analysis</h1>
-    <p>
-      End-to-end Power BI analytics project analyzing inventory demand,
-      availability, supply shortages, profit & loss using SQL Server and DAX.
-    </p>
+  <!-- ================= HEADER ================= -->
+  <header class="header">
+    <div class="header-content">
+      <h1>Business P&L Analysis</h1>
+      <p>
+        End-to-end Power BI analytics project analyzing inventory demand,
+        availability, supply shortages, profit & loss using SQL Server and DAX.
+      </p>
 
-    <a class="btn-primary"
-       href="https://github.com/Shreyansh9016/Business-P-L-Analysis"
-       target="_blank">
-      🔗 View GitHub Repository
-    </a>
-  </div>
-</header>
+      <a class="btn-primary" href="https://github.com/Shreyansh9016/Business-P-L-Analysis" target="_blank">
+        <i class="fab fa-github"></i> View GitHub Repository
+      </a>
+    </div>
+  </header>
 
-<!-- ================= NAV ================= -->
-<nav class="navbar">
-  <a href="#overview">Overview</a>
-  <a href="#objectives">Objectives</a>
-  <a href="#architecture">Architecture</a>
-  <a href="#data-processing">Data Cleaning</a>
-  <a href="#dax">DAX</a>
-  <a href="#dashboards">Dashboards</a>
-  <a href="#reports">Reports</a>
-</nav>
+  <!-- ================= NAV ================= -->
+  <nav class="navbar">
+    <a href="#overview"><i class="fas fa-chart-pie"></i> Overview</a>
+    <a href="#objectives"><i class="fas fa-bullseye"></i> Objectives</a>
+    <a href="#architecture"><i class="fas fa-sitemap"></i> Architecture</a>
+    <a href="#data-processing"><i class="fas fa-broom"></i> Data Cleaning</a>
+    <a href="#dax"><i class="fas fa-calculator"></i> DAX</a>
+    <a href="#dashboards"><i class="fas fa-tachometer-alt"></i> Dashboards</a>
+    <a href="#reports"><i class="fas fa-file-invoice"></i> Reports</a>
+  </nav>
 
-<!-- ================= OVERVIEW ================= -->
-<section id="overview">
-  <h2>📊 Project Overview</h2>
-  <div class="card">
-    <p>
-      This project demonstrates a complete data analytics lifecycle —
-      from raw CSV datasets stored in SQL Server to
-      KPI-driven dashboards built in Power BI.
-    </p>
-  </div>
-</section>
+  <!-- ================= OVERVIEW ================= -->
+  <section id="overview">
+    <h2>📊 Project Overview</h2>
+    <div class="card">
+      <p>
+        This project demonstrates a complete data analytics lifecycle —
+        from raw CSV datasets stored in SQL Server to
+        KPI-driven dashboards built in Power BI.
+      </p>
+    </div>
+  </section>
 
-<!-- ================= OBJECTIVES ================= -->
-<section id="objectives">
-  <h2>🎯 Objectives</h2>
-  <div class="grid">
-    <div class="card">Analyze inventory demand & availability</div>
-    <div class="card">Identify supply shortages</div>
-    <div class="card">Calculate profit & loss metrics</div>
-    <div class="card">Compare Test vs Production environments</div>
-  </div>
-</section>
+  <!-- ================= OBJECTIVES ================= -->
+  <section id="objectives">
+    <h2>🎯 Objectives</h2>
+    <div class="grid">
+      <div class="card">Analyze inventory demand & availability</div>
+      <div class="card">Identify supply shortages</div>
+      <div class="card">Calculate profit & loss metrics</div>
+      <div class="card">Compare Test vs Production environments</div>
+    </div>
+  </section>
 
-<!-- ================= ARCHITECTURE ================= -->
-<section id="architecture">
-  <h2>🏗️ Data Architecture</h2>
-  <div class="card">
-    <p><strong>Flow:</strong></p>
-    <p>CSV → SQL Server → Data Cleaning → DAX Measures → Power BI Dashboards</p>
-  </div>
-</section>
+  <!-- ================= ARCHITECTURE ================= -->
+  <section id="architecture">
+    <h2>🏗️ Data Architecture</h2>
+    <div class="card">
+      <p><strong>Flow:</strong></p>
+      <p>CSV → SQL Server → Data Cleaning → DAX Measures → Power BI Dashboards</p>
+    </div>
+  </section>
 
-<!-- ================= DATA PROCESSING ================= -->
-<section id="data-processing">
-  <h2>🧹 Data Processing & Cleaning</h2>
-  <div class="card">
-    <p>
-      Inventory and product tables were joined using SQL LEFT JOINs
-      to ensure no inventory records were lost during integration.
-    </p>
+  <!-- ================= DATA PROCESSING ================= -->
+  <section id="data-processing">
+    <h2>🧹 Data Processing & Cleaning</h2>
+    <div class="card">
+      <p>
+        Inventory and product tables were joined using SQL LEFT JOINs
+        to ensure no inventory records were lost during integration.
+      </p>
 
-<pre><code>
+      <pre><code>
 SELECT
   a.product_id,
   a.demand,
@@ -87,63 +93,64 @@ FROM Inventory a
 LEFT JOIN Products b
 ON a.product_id = b.product_id;
 </code></pre>
-  </div>
-</section>
+    </div>
+  </section>
 
-<!-- ================= DAX ================= -->
-<section id="dax">
-  <h2>📐 DAX Measures</h2>
+  <!-- ================= DAX ================= -->
+  <section id="dax">
+    <h2>📐 DAX Measures</h2>
 
-  <div class="grid">
-    <div class="card">
-      <h4>Total Demand</h4>
-      <pre><code>SUM('Demand/Availability'[Demand])</code></pre>
+    <div class="grid">
+      <div class="card">
+        <h4>Total Demand</h4>
+        <pre><code>SUM('Demand/Availability'[Demand])</code></pre>
+      </div>
+
+      <div class="card">
+        <h4>Average Demand per Day</h4>
+        <pre><code>DIVIDE([Total Demand], [Total Number of Days])</code></pre>
+      </div>
+
+      <div class="card">
+        <h4>Total Supply Shortage</h4>
+        <pre><code>[Total Demand] - [Total Availability]</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= DASHBOARDS ================= -->
+  <section id="dashboards">
+    <h2>📸 KPI Dashboards</h2>
+
+    <h3>Test Environment</h3>
+    <div class="image-grid">
+      <img src="assets/KPI 1 test_env.png">
+      <img src="assets/KPI 2 test_env.png">
     </div>
 
-    <div class="card">
-      <h4>Average Demand per Day</h4>
-      <pre><code>DIVIDE([Total Demand], [Total Number of Days])</code></pre>
+    <h3>Production Environment</h3>
+    <div class="image-grid">
+      <img src="assets/KPI 1 Prod.png">
+      <img src="assets/KPI 2 Prod.png">
     </div>
+  </section>
 
-    <div class="card">
-      <h4>Total Supply Shortage</h4>
-      <pre><code>[Total Demand] - [Total Availability]</code></pre>
-    </div>
-  </div>
-</section>
+  <!-- ================= REPORTS ================= -->
+  <section id="reports">
+    <h2>📄 Power BI Reports</h2>
 
-<!-- ================= DASHBOARDS ================= -->
-<section id="dashboards">
-  <h2>📸 KPI Dashboards</h2>
+    <h3>Test Environment Report</h3>
+    <iframe src="reports/Test Env Report.pdf"></iframe>
 
-  <h3>Test Environment</h3>
-  <div class="image-grid">
-    <img src="assets/KPI 1 test_env.png">
-    <img src="assets/KPI 2 test_env.png">
-  </div>
+    <h3>Production Environment Report</h3>
+    <iframe src="reports/Production Report.pdf"></iframe>
+  </section>
 
-  <h3>Production Environment</h3>
-  <div class="image-grid">
-    <img src="assets/KPI 1 Prod.png">
-    <img src="assets/KPI 2 Prod.png">
-  </div>
-</section>
-
-<!-- ================= REPORTS ================= -->
-<section id="reports">
-  <h2>📄 Power BI Reports</h2>
-
-  <h3>Test Environment Report</h3>
-  <iframe src="reports/Test Env Report.pdf"></iframe>
-
-  <h3>Production Environment Report</h3>
-  <iframe src="reports/Production Report.pdf"></iframe>
-</section>
-
-<!-- ================= FOOTER ================= -->
-<footer>
-  <p>© 2026 | Business P&L Analysis | Power BI Project</p>
-</footer>
+  <!-- ================= FOOTER ================= -->
+  <footer>
+    <p>© 2026 | Business P&L Analysis | Power BI Project</p>
+  </footer>
 
 </body>
+
 </html>

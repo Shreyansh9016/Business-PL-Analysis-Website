@@ -101,19 +101,120 @@ ON a.product_id = b.product_id;
     <h2>📐 DAX Measures</h2>
 
     <div class="grid">
+      <!-- Total Demand -->
       <div class="card">
         <h4>Total Demand</h4>
         <pre><code>SUM('Demand/Availability'[Demand])</code></pre>
+        <div class="visual-concept">
+          <div class="bar-comparison">
+            <div class="bar-row"><span class="bar demand">
+                <div class="bar-fill"></div>
+              </span> <span>Demand</span></div>
+          </div>
+        </div>
       </div>
 
+      <!-- Total Days -->
       <div class="card">
+        <h4>Total Number of Days</h4>
+        <pre><code>DISTINCTCOUNT('Demand/Availability'[Order_Date_DD_MM_YYYY].[Date])</code></pre>
+        <div class="visual-concept">
+          <div class="calendar-grid-visual">
+            <div class="calendar-day active" style="opacity:0.3"></div>
+            <div class="calendar-day active" style="opacity:0.5"></div>
+            <div class="calendar-day active"></div>
+            <div class="calendar-day"></div>
+            <div class="calendar-day active"></div>
+            <div class="calendar-day"></div>
+            <div class="calendar-day active"></div>
+            <div class="calendar-day"></div>
+            <div class="calendar-day active"></div>
+            <div class="calendar-day"></div>
+            <div class="calendar-day active"></div>
+            <div class="calendar-day"></div>
+            <div class="calendar-day active"></div>
+            <div class="calendar-day"></div>
+            <div class="calendar-day active"></div>
+            <div class="calendar-day"></div>
+            <div class="calendar-day active"></div>
+            <div class="calendar-day"></div>
+            <div class="calendar-day active"></div>
+            <div class="calendar-day active"></div>
+            <div class="calendar-day"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Total Availability -->
+      <div class="card">
+        <h4>Total Availability</h4>
+        <pre><code>SUM('Demand/Availability'[Availability])</code></pre>
+        <div class="visual-concept">
+          <div class="bar-comparison">
+            <div class="bar-row"><span class="bar avail">
+                <div class="bar-fill"></div>
+              </span> <span>Stock</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Averages Row for better layout -->
+      <div class="card" style="grid-column: span 1;">
         <h4>Average Demand per Day</h4>
         <pre><code>DIVIDE([Total Demand], [Total Number of Days])</code></pre>
       </div>
 
+      <div class="card" style="grid-column: span 1;">
+        <h4>Average Availability per Day</h4>
+        <pre><code>DIVIDE([Total Availability], [Total Number of Days])</code></pre>
+      </div>
+
+      <!-- Supply Shortage -->
       <div class="card">
         <h4>Total Supply Shortage</h4>
         <pre><code>[Total Demand] - [Total Availability]</code></pre>
+        <div class="visual-concept">
+          <div class="bar-comparison">
+            <div class="bar-row"><span class="bar demand">
+                <div class="bar-fill"></div>
+              </span></div>
+            <div class="bar-row"><span class="bar avail">
+                <div class="bar-fill"></div>
+              </span></div>
+            <div class="bar-row"><span class="bar shortage">
+                <div class="bar-fill"></div>
+              </span> <span>Gap</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Total Profit -->
+      <div class="card" style="grid-column: 1 / -1;">
+        <h4>Total Profit</h4>
+        <pre><code>SUMX(
+  FILTER(
+    'Demand/Availability',
+    'Demand/Availability'[Loss/Profit] > 0
+  ),
+  'Demand/Availability'[Loss/Profit] * 'Demand/Availability'[unit_price]
+)</code></pre>
+        <div class="visual-concept">
+          <div class="process-flow">
+            <div class="process-box">Table</div>
+            <i class="fas fa-arrow-right arrow"></i>
+            <div class="process-box">Filter (>0)</div>
+            <i class="fas fa-arrow-right arrow"></i>
+            <div class="process-box">Iterate (SUMX)</div>
+            <i class="fas fa-arrow-right arrow"></i>
+            <div class="process-box" style="color:var(--accent)">$$$</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Average Loss -->
+      <div class="card">
+        <h4>Average Loss per Day</h4>
+        <pre><code>DIVIDE([Total Loss], [Total Number of Days])</code></pre>
       </div>
     </div>
   </section>

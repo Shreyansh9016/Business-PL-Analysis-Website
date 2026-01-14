@@ -284,6 +284,111 @@ footer {
   background: #020617;
 }
 
+/* LOGIC VISUALIZATIONS */
+.visual-concept {
+  margin-top: 20px;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  border: 1px dashed var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Calendar Grid Visual */
+.calendar-grid-visual {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  width: 100%;
+  max-width: 200px;
+}
+
+.calendar-day {
+  height: 6px;
+  background: #334155;
+  border-radius: 2px;
+}
+
+.calendar-day.active {
+  background: var(--accent);
+  box-shadow: 0 0 5px var(--accent);
+}
+
+/* Process Flow Visual (Filter -> Calc) */
+.process-flow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.process-box {
+  background: rgba(15, 23, 42, 0.8);
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  font-family: var(--font-code);
+}
+
+.arrow {
+  color: var(--text-muted);
+}
+
+/* Bar Comparison Visual */
+.bar-comparison {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.bar-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8rem;
+}
+
+.bar {
+  height: 8px;
+  border-radius: 4px;
+  flex-grow: 1;
+  position: relative;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  animation: growBar 1.5s ease-out forwards;
+}
+
+.bar.demand .bar-fill {
+  width: 80%;
+  background: var(--primary);
+}
+
+.bar.avail .bar-fill {
+  width: 50%;
+  background: var(--secondary);
+}
+
+.bar.shortage .bar-fill {
+  width: 30%;
+  background: #f43f5e;
+  margin-left: 50%;
+}
+
+@keyframes growBar {
+  from {
+    width: 0;
+  }
+}
+
 /* ANIMATIONS */
 @keyframes fadeInUp {
   from {
